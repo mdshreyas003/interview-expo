@@ -55,4 +55,12 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+    @GetMapping("/auth/user/{name}")
+    public List<User> getUserByName(@PathVariable String name){
+        return userService.getUserByName(name);
+    }
+    @GetMapping("/auth/usermail/{email}")
+    public List<User> getUserByEmail(@PathVariable String email){
+        return userService.getUserByEmail(email);
+    }
 }
