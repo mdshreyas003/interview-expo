@@ -30,8 +30,8 @@ public class Post {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "uid", nullable = false)
+    @ManyToOne
+//    @JoinColumn(name = "uid", nullable = false)
     private User user;
     // Constructors, getters, setters, and other methods
 

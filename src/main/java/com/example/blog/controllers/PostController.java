@@ -64,5 +64,9 @@ public class PostController {
     public List<Post> getPostsByUser(@PathVariable Long uid) {
         return postService.getPostsByUser(uid);
     }
+    @GetMapping("/search/byRole/{role}")
+    public List<Post> getPostsByRole(@PathVariable String role){
+        return postService.getPostsByRole(role);
+    }
 }
 

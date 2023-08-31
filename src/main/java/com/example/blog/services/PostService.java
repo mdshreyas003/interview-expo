@@ -43,10 +43,13 @@ public class PostService {
         }
     }
     public List<Post> getPostsByCompany(String company) {
-        return postRepository.findByCompany(company);
+        return postRepository.findByCompanyIgnoreCase(company);
     }
 
     public List<Post> getPostsByUser(Long uid) {
         return postRepository.findByUser_Uid(uid);
+    }
+    public List<Post> getPostsByRole(String role){
+        return postRepository.findByRoleIgnoreCase(role);
     }
 }
