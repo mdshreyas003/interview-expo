@@ -31,7 +31,7 @@ public class Post {
     private String content;
 
     @ManyToOne
-//    @JoinColumn(name = "uid", nullable = false)
+    @JoinColumn(name = "uid", nullable = false)
     private User user;
     // Constructors, getters, setters, and other methods
 
