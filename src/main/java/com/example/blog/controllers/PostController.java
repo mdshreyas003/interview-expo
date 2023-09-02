@@ -12,15 +12,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/posts")
 public class PostController {
-
     @Autowired
     private PostService postService;
-
     @GetMapping
     public List<Post> getAllPosts() {
         return postService.getAllPosts();
     }
-
     @GetMapping("/{pid}")
     public ResponseEntity<Post> getPostById(@PathVariable Long pid) {
         Post post = postService.getPostById(pid);

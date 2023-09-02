@@ -2,6 +2,9 @@ package com.example.blog.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @Entity
 @Table(name = "posts")
 public class Post {
@@ -25,7 +28,7 @@ public class Post {
 
 
     private String salary;
-
+    private Date datetime;
     @Lob
     @Column(columnDefinition = "TEXT")
     private String content;
@@ -47,6 +50,7 @@ public class Post {
         this.salary = salary;
         this.content = content;
         this.user = user;
+        this.datetime = new Date();
     }
 
     // Getters and setters

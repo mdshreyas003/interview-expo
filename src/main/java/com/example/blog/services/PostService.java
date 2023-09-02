@@ -1,7 +1,9 @@
 package com.example.blog.services;
 
 import com.example.blog.entities.Post;
+import com.example.blog.entities.User;
 import com.example.blog.repositories.PostRepository;
+import com.example.blog.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,8 @@ public class PostService {
 
     @Autowired
     private PostRepository postRepository;
-
+    @Autowired
+    private UserRepository userRepository;
     public List<Post> getAllPosts() {
         return postRepository.findAll();
     }
@@ -22,7 +25,13 @@ public class PostService {
     }
 
     public Post createPost(Post post) {
-        return postRepository.save(post);
+
+
+        postRepository.save(post);
+        User user = userRepository.findById(post.getUser().getUid()).orElse(null);
+        user.setBlogs(user.getBlogs()+1);
+        userRepository.save(user);
+        return post;
     }
 
     public Post updatePost(Long pid, Post post) {
@@ -36,6 +45,10 @@ public class PostService {
 
     public boolean deletePost(Long pid) {
         if (postRepository.existsById(pid)) {
+            Post post = postRepository.findById(pid).orElse(null);
+            User user = userRepository.findById(post.getUser().getUid()).orElse(null);
+            user.setBlogs(user.getBlogs()-1);
+            userRepository.save(user);
             postRepository.deleteById(pid);
             return true;
         } else {
